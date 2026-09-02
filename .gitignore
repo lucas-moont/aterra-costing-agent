@@ -18,6 +18,7 @@ engine/out/
 
 # Internal working aids — not part of the submission
 /HANDOFF.md
+/recording-script.md
 
 # Env / secrets
 .env
