@@ -23,19 +23,41 @@ writeFileSync(outputPath, JSON.stringify(quotation, null, 2) + "\n", "utf8");
 const money = (n: number) =>
   n.toLocaleString("en-US", { style: "currency", currency: "USD" });
 const t = quotation.totals;
+const describe = new Map(quotation.lines.map((l) => [l.id, l.description]));
 
-console.log(`\nCosted quotation — ${quotation.quote_ref}`);
-console.log(`  input : ${inputPath}`);
-console.log(`  output: ${outputPath}\n`);
-console.log(`  Confirmed subtotal   ${money(t.confirmed_subtotal)}`);
-console.log(`  Assumption subtotal  ${money(t.assumption_subtotal)}`);
-console.log(`  ─────────────────────`);
-console.log(`  Resolved subtotal    ${money(t.resolved_subtotal)}`);
-console.log(`  Stale (indicative)   ${money(t.stale_indicative)}  — reconfirm, not in subtotal`);
-console.log(`  Unresolved lines     ${t.unresolved_count}  — no price yet`);
-console.log(`\n  ⚠ Provisional: ${t.needs_review_count} item(s) need review before this is sent.\n`);
+// A human-first summary. One reviewer is non-technical and checks this against the
+// source documents by hand, so we lead with plain money and plain reasons, and group
+// the review items by what the reader has to DO about them — not by internal id.
+console.log(`\n  Costed quotation — ${quotation.quote_ref}`);
+console.log(`  ${quotation.lines.length} services read · full detail in ${outputPath}\n`);
 
-for (const item of quotation.needs_review) {
-  console.log(`  · [${item.tier}] ${item.id}: ${item.reason}`);
-}
+console.log(`  WHAT WE CAN PRICE`);
+console.log(`    Read from signed rates    ${money(t.confirmed_subtotal).padStart(12)}`);
+console.log(`    Priced on an assumption   ${money(t.assumption_subtotal).padStart(12)}   (fine to use, but flagged below)`);
+console.log(`    ────────────────────────────────────────`);
+console.log(`    Subtotal we stand behind  ${money(t.resolved_subtotal).padStart(12)}\n`);
+
+console.log(`  NOT IN THAT SUBTOTAL — on purpose`);
+console.log(`    Stale rate (reconfirm)    ${money(t.stale_indicative).padStart(12)}   ${countTier("stale")} line(s) on an old tariff`);
+console.log(`    No price yet              ${"—".padStart(12)}   ${t.unresolved_count} line(s) still need a supplier\n`);
+
+console.log(`  ⚠ ${t.needs_review_count} things to check before this goes to a client:\n`);
+section("assumption", "Priced, but on an assumption — double-check");
+section("stale", "Old tariff — reconfirm with the supplier");
+section("unresolved", "No price found — a supplier has to fill this in");
 console.log("");
+
+function countTier(tier: string): number {
+  return quotation.needs_review.filter((r) => r.tier === tier).length;
+}
+
+function section(tier: string, heading: string): void {
+  const items = quotation.needs_review.filter((r) => r.tier === tier);
+  if (items.length === 0) return;
+  console.log(`  ${heading}  (${items.length})`);
+  for (const item of items) {
+    console.log(`    • ${describe.get(item.id) ?? item.id}`);
+    console.log(`        ${item.reason}`);
+  }
+  console.log("");
+}
