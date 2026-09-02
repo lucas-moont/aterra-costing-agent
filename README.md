@@ -24,8 +24,9 @@ disposes. No number is ever authored by the model.
 ```
 
 Extraction (Python/LLM) → extraction eval → costing engine (Node). Prints the honest
-totals and the `needs_review` list. The `--cached` LLM cache is committed, so it runs
-offline without spending anything.
+totals and the `needs_review` list. Extraction calls the local Claude **live every run**
+(~2–3 min) — the AI genuinely works each session. A committed cache is a safety net for
+a locked-down machine; `run_extraction.py --cached` forces the offline path. See ADR 0005.
 
 Already-generated output lives in [`sample/`](./sample) — read it without running.
 
