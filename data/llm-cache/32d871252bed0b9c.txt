@@ -1,12 +1,14 @@
-Vou explicar rapidinho antes da lista: isto aqui Ã© tipo desmontar uma lista de compras de viagem â€” cada item (transfer, hotel, passeio, voo, taxa) vira uma linha separada na caixa, sem inventar preÃ§o nenhum, sÃ³ copiando o que o papel diz.
+Vou montar a lista de serviÃ§os igual quem separa contas de um churrasco: cada item cobrÃ¡vel vira uma linha prÃ³pria, mesmo os "brindes" (como taxa de trailer ou taxa de conservaÃ§Ã£o) que vÃªm junto de outro serviÃ§o â€” porque cada "presentinho" desses tambÃ©m tem custo lÃ¡ na ponta.
 
-Onde os dados nÃ£o davam pra saber (tipo "quantas das 5 pessoas ficam em cada quarto"), deixei `pax: null` em vez de chutar â€” como pediram para nÃ£o inventar nada.
+Alguns detalhes tÃ©cnicos:
+- Quando a acomodaÃ§Ã£o lista dois tipos de quarto (ex: "Family Suite" + "Classic Room"), separei em duas linhas, porque cada quarto Ã© uma unidade cobrÃ¡vel diferente.
+- Nos "Included: N x ..." sÃ³ usei `pax` = N quando o texto deixava claro que era por pessoa (ex: "2 x Consv Levy compulsory pax" â†’ pax: 2). Onde nÃ£o tinha como saber a divisÃ£o exata dos 5 viajantes entre quartos, deixei `pax: null` em vez de chutar â€” o enunciado pede para nÃ£o inventar nÃºmeros.
 
 ```json
 [
   {
     "id": "svc-01",
-    "description": "Meet & Greet - One Way Assistance",
+    "description": "Meet & Greet - One Way Assistance (arrival)",
     "location": "Cape Town",
     "date_in": "2027-07-05",
     "date_out": null,
@@ -17,7 +19,7 @@ Onde os dados nÃ£o davam pra saber (tipo "quantas das 5 pessoas ficam em cada 
   },
   {
     "id": "svc-02",
-    "description": "Transfer CIA to Zone 1 (06H00-21H00) - with Guide",
+    "description": "Transfer CIA to Zone 1 (06H00-21H00) with Guide",
     "location": "Cape Town",
     "date_in": "2027-07-05",
     "date_out": null,
@@ -28,47 +30,47 @@ Onde os dados nÃ£o davam pra saber (tipo "quantas das 5 pessoas ficam em cada 
   },
   {
     "id": "svc-03",
-    "description": "Trailer 6+ Pax",
+    "description": "Trailer 6+ Pax extra",
     "location": "Cape Town",
     "date_in": "2027-07-05",
     "date_out": null,
     "service_type": "supplement",
     "room_or_unit": null,
-    "pax": null,
+    "pax": 5,
     "notes": "Included: 1 x Trailer 6+ Pax per group"
   },
   {
     "id": "svc-04",
-    "description": "Accommodation - Family Suite, Bed and Breakfast",
+    "description": "Accommodation - The Camissa Boutique Hotel, Family Suite, Bed and Breakfast",
     "location": "Cape Town",
     "date_in": "2027-07-05",
     "date_out": "2027-07-09",
     "service_type": "accommodation",
     "room_or_unit": "Family Suite",
     "pax": null,
-    "notes": "The Camissa Boutique Hotel; 1 x Family Suite on a Bed and Breakfast basis"
+    "notes": null
   },
   {
     "id": "svc-05",
-    "description": "Accommodation - Classic Room, Bed and Breakfast",
+    "description": "Accommodation - The Camissa Boutique Hotel, Classic Room, Bed and Breakfast",
     "location": "Cape Town",
     "date_in": "2027-07-05",
     "date_out": "2027-07-09",
     "service_type": "accommodation",
     "room_or_unit": "Classic Room",
     "pax": null,
-    "notes": "The Camissa Boutique Hotel; 1 x Classic Room on a Bed and Breakfast basis"
+    "notes": null
   },
   {
     "id": "svc-06",
-    "description": "Half Day Rise & Climb - Table Mountain Hike",
+    "description": "Activity - SLOW Walks & Hikes: Half Day Rise & Climb, Table Mountain Hike",
     "location": "Cape Town",
     "date_in": "2027-07-06",
     "date_out": null,
     "service_type": "activity",
     "room_or_unit": null,
     "pax": 5,
-    "notes": "SLOW Walks & Hikes; Half Day (per person)"
+    "notes": "Half Day (per person)"
   },
   {
     "id": "svc-07",
@@ -83,14 +85,14 @@ Onde os dados nÃ£o davam pra saber (tipo "quantas das 5 pessoas ficam em cada 
   },
   {
     "id": "svc-08",
-    "description": "Custom Private Tour",
+    "description": "Day Tour - Custom Private Tour",
     "location": "Cape Town",
     "date_in": "2027-07-08",
     "date_out": null,
     "service_type": "activity",
     "room_or_unit": null,
     "pax": 5,
-    "notes": "Day Tour; Per Person"
+    "notes": "Per Person"
   },
   {
     "id": "svc-09",
@@ -100,41 +102,41 @@ Onde os dados nÃ£o davam pra saber (tipo "quantas das 5 pessoas ficam em cada 
     "date_out": null,
     "service_type": "supplement",
     "room_or_unit": null,
-    "pax": null,
+    "pax": 5,
     "notes": "Included: 1 x Per Group Extra per group"
   },
   {
     "id": "svc-10",
-    "description": "Transfer CIA to Zone 1 (06H00-21H00) - with Guide",
+    "description": "Transfer CIA to Zone 1 (06H00-21H00) with Guide",
     "location": "Cape Town",
     "date_in": "2027-07-09",
     "date_out": null,
     "service_type": "transfer",
     "room_or_unit": null,
     "pax": 5,
-    "notes": "Per Vehicle One Way; Pick up: The Camissa Boutique Hotel; Drop off: CPT"
+    "notes": "Per Vehicle One Way; Pick up: The Camissa Boutique Hotel; Drop off: CIA"
   },
   {
     "id": "svc-11",
-    "description": "Trailer 6+ Pax",
+    "description": "Trailer 6+ Pax extra",
     "location": "Cape Town",
     "date_in": "2027-07-09",
     "date_out": null,
     "service_type": "supplement",
     "room_or_unit": null,
-    "pax": null,
+    "pax": 5,
     "notes": "Included: 1 x Trailer 6+ Pax per group"
   },
   {
     "id": "svc-12",
-    "description": "Flight Cape Town to Hoedspruit",
+    "description": "Flight - Cape Town to Hoedspruit",
     "location": "Cape Town",
     "date_in": "2027-07-09",
     "date_out": null,
     "service_type": "flight",
     "room_or_unit": null,
     "pax": 5,
-    "notes": "Zambezi Air, Per person; Departure: 4Z, Cape Town; Arrival: 4Z, Hoedspruit"
+    "notes": "Zambezi Air, Per person, Departure: 4Z Cape Town, Arrival: 4Z Hoedspruit"
   },
   {
     "id": "svc-13",
@@ -149,25 +151,25 @@ Onde os dados nÃ£o davam pra saber (tipo "quantas das 5 pessoas ficam em cada 
   },
   {
     "id": "svc-14",
-    "description": "Accommodation - Family Chalet, Fully Inclusive (Selected beverages)",
+    "description": "Accommodation - Marula River Lodge, Family Chalet, Fully Inclusive (Selected beverages)",
     "location": "Marula Reserve",
     "date_in": "2027-07-09",
     "date_out": "2027-07-11",
     "service_type": "accommodation",
     "room_or_unit": "Family Chalet",
     "pax": null,
-    "notes": "Marula River Lodge; Family Chalet on a Fully Inclusive (Selected beverages) basis"
+    "notes": null
   },
   {
     "id": "svc-15",
-    "description": "Accommodation - Tented Pool Suite, Fully Inclusive (Selected beverages)",
+    "description": "Accommodation - Marula River Lodge, Tented Pool Suite, Fully Inclusive (Selected beverages)",
     "location": "Marula Reserve",
     "date_in": "2027-07-09",
     "date_out": "2027-07-11",
     "service_type": "accommodation",
     "room_or_unit": "Tented Pool Suite",
     "pax": null,
-    "notes": "Marula River Lodge; Tented Pool Suite on a Fully Inclusive (Selected beverages) basis"
+    "notes": null
   },
   {
     "id": "svc-16",
@@ -182,14 +184,14 @@ Onde os dados nÃ£o davam pra saber (tipo "quantas das 5 pessoas ficam em cada 
   },
   {
     "id": "svc-17",
-    "description": "HDS to Kudu Sands Lodges",
+    "description": "Transfer - HDS to Kudu Ridge Private Game Reserve",
     "location": "Hoedspruit",
     "date_in": "2027-07-11",
     "date_out": null,
     "service_type": "transfer",
     "room_or_unit": null,
     "pax": 5,
-    "notes": "Transfers & Tours; Per Person One Way; Pick up: Marula River Lodge; Drop off: Kudu Ridge Private Game Reserve"
+    "notes": "Per Person One Way; Pick up: Marula River Lodge; Drop off: Kudu Ridge Private Game Reserve"
   },
   {
     "id": "svc-18",
@@ -199,19 +201,19 @@ Onde os dados nÃ£o davam pra saber (tipo "quantas das 5 pessoas ficam em cada 
     "date_out": null,
     "service_type": "fee",
     "room_or_unit": null,
-    "pax": null,
+    "pax": 5,
     "notes": "Included: 1 x Vehicle Entrance Fee per group"
   },
   {
     "id": "svc-19",
-    "description": "Accommodation - Luxury Suite x2, Fully Inclusive (Selected Beverages)",
+    "description": "Accommodation - Kudu Ridge Private Game Reserve, Luxury Suite (2x), Fully Inclusive (Selected Beverages)",
     "location": "Hoedspruit",
     "date_in": "2027-07-11",
     "date_out": "2027-07-14",
     "service_type": "accommodation",
     "room_or_unit": "Luxury Suite",
     "pax": null,
-    "notes": "Kudu Ridge Private Game Reserve; 2 x Luxury Suite on a Fully Inclusive (Selected Beverages) basis"
+    "notes": null
   },
   {
     "id": "svc-20",
@@ -226,7 +228,7 @@ Onde os dados nÃ£o davam pra saber (tipo "quantas das 5 pessoas ficam em cada 
   },
   {
     "id": "svc-21",
-    "description": "Triple",
+    "description": "Triple room extra",
     "location": "Hoedspruit",
     "date_in": "2027-07-11",
     "date_out": null,
@@ -237,24 +239,24 @@ Onde os dados nÃ£o davam pra saber (tipo "quantas das 5 pessoas ficam em cada 
   },
   {
     "id": "svc-22",
-    "description": "KMIA to Kudu Sands Lodges",
+    "description": "Transfer - KMIA to Kudu Ridge Private Game Reserve",
     "location": "Kruger Mpumalanga Airport",
     "date_in": "2027-07-14",
     "date_out": null,
     "service_type": "transfer",
     "room_or_unit": null,
     "pax": 5,
-    "notes": "Transfers & Tours; Per Person One Way; Pick up: Kudu Ridge Private Game Reserve; Drop off: MQP"
+    "notes": "Per Person One Way; Pick up: Kudu Ridge Private Game Reserve; Drop off: MQP"
   },
   {
     "id": "svc-23",
-    "description": "Entrance Fee",
+    "description": "Entrance Fee (per pax)",
     "location": "Kruger Mpumalanga Airport",
     "date_in": "2027-07-14",
     "date_out": null,
     "service_type": "fee",
     "room_or_unit": null,
-    "pax": 1,
+    "pax": null,
     "notes": "Included: 1 x Entrance Fee per pax"
   },
   {
@@ -265,23 +267,23 @@ Onde os dados nÃ£o davam pra saber (tipo "quantas das 5 pessoas ficam em cada 
     "date_out": null,
     "service_type": "fee",
     "room_or_unit": null,
-    "pax": null,
+    "pax": 5,
     "notes": "Included: 1 x Vehicle Entrance Fee per group"
   },
   {
     "id": "svc-25",
-    "description": "Flight Nelspruit to Vilancoulos",
+    "description": "Flight - Nelspruit to Vilancoulos",
     "location": "Nelspruit",
     "date_in": "2027-07-14",
     "date_out": null,
     "service_type": "flight",
     "room_or_unit": null,
     "pax": 5,
-    "notes": "Zambezi Air, Flights, Per person; Departure: 4Z, Nelspruit; Arrival: 4Z, Vilancoulos"
+    "notes": "Zambezi Air, Flights, Per person, Departure: 4Z Nelspruit, Arrival: 4Z Vilancoulos"
   },
   {
     "id": "svc-26",
-    "description": "Helicopter Transfer VNX to Ilha Azul Beach Lodge",
+    "description": "Helicopter Transfer - VNX to Ilha Azul Beach Lodge",
     "location": "Benguerra",
     "date_in": "2027-07-14",
     "date_out": null,
@@ -292,30 +294,30 @@ Onde os dados nÃ£o davam pra saber (tipo "quantas das 5 pessoas ficam em cada 
   },
   {
     "id": "svc-27",
-    "description": "Accommodation - Beach Villa, Fully Inclusive",
+    "description": "Accommodation - Ilha Azul Beach Lodge, Beach Villa, Fully Inclusive",
     "location": "Benguerra",
     "date_in": "2027-07-14",
     "date_out": "2027-07-17",
     "service_type": "accommodation",
     "room_or_unit": "Beach Villa",
     "pax": null,
-    "notes": "Ilha Azul Beach Lodge; 1 x Beach Villa & 1 x Beach Villa Grande on a Fully Inclusive basis"
+    "notes": null
   },
   {
     "id": "svc-28",
-    "description": "Accommodation - Beach Villa Grande, Fully Inclusive",
+    "description": "Accommodation - Ilha Azul Beach Lodge, Beach Villa Grande, Fully Inclusive",
     "location": "Benguerra",
     "date_in": "2027-07-14",
     "date_out": "2027-07-17",
     "service_type": "accommodation",
     "room_or_unit": "Beach Villa Grande",
     "pax": null,
-    "notes": "Ilha Azul Beach Lodge; 1 x Beach Villa & 1 x Beach Villa Grande on a Fully Inclusive basis"
+    "notes": null
   },
   {
     "id": "svc-29",
-    "description": "Helicopter Transfer Ilha Azul Beach Lodge to VNX",
-    "location": "Vilancoulos",
+    "description": "Helicopter Transfer - Ilha Azul Beach Lodge to VNX",
+    "location": "Benguerra",
     "date_in": "2027-07-17",
     "date_out": null,
     "service_type": "transfer",
@@ -325,18 +327,18 @@ Onde os dados nÃ£o davam pra saber (tipo "quantas das 5 pessoas ficam em cada 
   },
   {
     "id": "svc-30",
-    "description": "Flight Vilancoulos to Johannesburg",
+    "description": "Flight - Vilancoulos to Johannesburg",
     "location": "Vilancoulos",
     "date_in": "2027-07-17",
     "date_out": null,
     "service_type": "flight",
     "room_or_unit": null,
     "pax": 5,
-    "notes": "Zambezi Air; Departure: 4Z, Vilancoulos; Arrival: 4Z, Johannesburg"
+    "notes": "Zambezi Air, Departure: 4Z Vilancoulos, Arrival: 4Z Johannesburg"
   },
   {
     "id": "svc-31",
-    "description": "Meet & Greet - One Way Assistance",
+    "description": "Meet & Greet - One Way Assistance (departure)",
     "location": "Johannesburg",
     "date_in": "2027-07-17",
     "date_out": null,
@@ -348,4 +350,4 @@ Onde os dados nÃ£o davam pra saber (tipo "quantas das 5 pessoas ficam em cada 
 ]
 ```
 
-**O ponto complicado de verdade**: nos quartos de hotel (svc-04, svc-05, svc-14, svc-15, svc-19, svc-27, svc-28) o papel nunca diz quantas das 5 pessoas ficam em cada quarto â€” sÃ³ diz quantos quartos foram reservados. Por isso deixei `pax: null` ali, em vez de chutar 5 em cada linha, o que inflaria a contagem de gente.
+Resumindo: 31 linhas de serviÃ§o, uma pra cada coisa cobrÃ¡vel â€” inclusive os "extras" escondidos dentro de outros itens (trailer, taxas de entrada, levy de conservaÃ§Ã£o) viraram linhas prÃ³prias, do jeito que foi pedido. Nenhum preÃ§o foi inventado, sÃ³ descriÃ§Ã£o e datas.
