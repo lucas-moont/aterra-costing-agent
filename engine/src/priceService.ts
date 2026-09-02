@@ -98,12 +98,16 @@ export function priceService(service: ExtractedService): CostedLine {
   const { rate, assumption } = selectRate(service);
 
   if (!rate) {
+    const flagReason = service.flags?.map((f) => f.reason).join("; ");
     return {
       ...base,
       quantities: service.quantities,
       unit_rate: null,
       line_total: null,
-      confidence: { tier: "unresolved", reason: "No usable rate found" },
+      confidence: {
+        tier: "unresolved",
+        reason: flagReason ?? "No rate found in any source",
+      },
       provenance: null,
     };
   }
