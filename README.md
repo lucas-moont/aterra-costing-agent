@@ -20,18 +20,35 @@ disposes. No number is ever authored by the model.
 ## Run
 
 ```
-./run.sh          # or ./run.ps1 on Windows
+./run.ps1         # Windows — or ./run.sh on POSIX
 ```
 
-Runs extraction (Python) → costing engine (Node) → prints the honest totals and the
-`needs_review` count.
+Extraction (Python/LLM) → extraction eval → costing engine (Node). Prints the honest
+totals and the `needs_review` list. The `--cached` LLM cache is committed, so it runs
+offline without spending anything.
+
+Already-generated output lives in [`sample/`](./sample) — read it without running.
+
+## Setup
+
+```
+# engine
+cd engine && npm install && npm test         # 19 tests
+
+# extraction
+cd extraction && python -m venv .venv
+.venv/Scripts/pip install -r requirements.txt
+python run_extraction.py                       # live (warms cache); --cached for offline
+python ../eval/check_extraction.py             # grades extraction vs golden set → 23/23
+```
 
 ## Layout
 
-- `extraction/` — Python agent (document ingestion + matching)
-- `engine/` — deterministic costing engine + tests
-- `data/` — the three input documents + cached LLM fixtures
+- `extraction/` — Python agent: ingestion + LangGraph + local-Claude LLM
+- `engine/` — deterministic costing engine + tests (the trust anchor)
+- `eval/` — grades the LLM extraction against a hand-checked golden rate set
+- `data/` — the three input documents + the committed LLM cache
 - `docs/` — the note, the supplement, architecture, and ADRs
-- `tests/` — golden-set validation
+- `sample/` — committed example output (`quotation.json` + LLM extractions)
 
-See `docs/NOTE.md` for the write-up and `docs/SUPPLEMENT.md` for the actions section.
+Start with `docs/NOTE.md`; `CONTEXT.md` is the glossary; `docs/adr/` holds the decisions.
