@@ -167,4 +167,56 @@ describe("priceService", () => {
     expect(line.confidence.tier).toBe("assumption");
     expect(line.confidence.reason).toContain("levy is compulsory per person");
   });
+
+  it("computes nights from the stay dates rather than trusting a passed count", () => {
+    // Oracle svc-19 dates: 11–14 Jul = 3 nights. Engine derives 3, not the wrong 9.
+    const line = priceService(
+      service({
+        id: "svc-19",
+        description: "Luxury Suite FI",
+        basis: "per_person_sharing_per_night",
+        date_in: "2027-07-11",
+        date_out: "2027-07-14",
+        quantities: { pax: 5, nights: 9 },
+        rate_candidates: [{ value: 890, kind: "pack", provenance: packRef }],
+      }),
+    );
+
+    expect(line.line_total).toBe(13350); // 890 × 5 × 3, not × 9
+  });
+
+  it("picks the season band by date and flags a boundary night as an assumption", () => {
+    // Oracle svc-14: Marula Family Chalet, 09–11 Jul = 2 nights. The 09 Jul night
+    // falls in BOTH green (…–09 Jul) and peak (09 Jul–…). Engine takes peak (higher)
+    // and flags the ambiguity. 890 × 1 unit × 2 nights = 1780.
+    const line = priceService(
+      service({
+        id: "svc-14",
+        description: "Family Chalet FI",
+        basis: "per_unit_per_night",
+        date_in: "2027-07-09",
+        date_out: "2027-07-11",
+        quantities: { units: 1 },
+        rate_candidates: [
+          {
+            value: 620,
+            kind: "pack",
+            provenance: packRef,
+            season: { from: "2027-04-01", to: "2027-07-09" },
+          },
+          {
+            value: 890,
+            kind: "pack",
+            provenance: packRef,
+            season: { from: "2027-07-09", to: "2027-10-31" },
+          },
+        ],
+      }),
+    );
+
+    expect(line.unit_rate).toBe(890);
+    expect(line.line_total).toBe(1780);
+    expect(line.confidence.tier).toBe("assumption");
+    expect(line.confidence.reason.toLowerCase()).toContain("season");
+  });
 });

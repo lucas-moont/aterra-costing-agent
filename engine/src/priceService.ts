@@ -21,46 +21,85 @@ const BASIS_FACTORS: Record<Basis, (keyof Quantities)[]> = {
   complimentary: [],
 };
 
+const DAY_MS = 86_400_000;
+
+/** Nights between two ISO dates. Deterministic date maths belongs in the engine,
+ *  so a passed-in nights count is always recomputed when both dates are present. */
+function nightsBetween(from: string, to: string): number {
+  return Math.round((Date.parse(to) - Date.parse(from)) / DAY_MS);
+}
+
+function seasonContains(
+  season: { from: string; to: string },
+  date: string,
+): boolean {
+  const d = Date.parse(date);
+  return d >= Date.parse(season.from) && d <= Date.parse(season.to);
+}
+
+interface RateSelection {
+  rate: RateCandidate | null;
+  /** Set when the selection itself required an assumption (e.g. a boundary night). */
+  assumption?: string;
+}
+
+/** Correspondence supersedes the pack. Seasonal rates are chosen by the stay's
+ *  first night; a night that falls in two bands at once is a boundary — we take the
+ *  higher rate and surface the assumption rather than silently guessing. */
+function selectRate(service: ExtractedService): RateSelection {
+  const candidates = service.rate_candidates;
+  const correspondence = candidates.find((c) => c.kind === "correspondence");
+  if (correspondence) return { rate: correspondence };
+
+  const seasonal = candidates.filter((c) => c.season);
+  if (seasonal.length > 0 && service.date_in) {
+    const inBand = seasonal.filter((c) => seasonContains(c.season!, service.date_in!));
+    if (inBand.length === 1) return { rate: inBand[0]! };
+    if (inBand.length > 1) {
+      const highest = inBand.reduce((a, b) => (b.value > a.value ? b : a));
+      return {
+        rate: highest,
+        assumption: `Stay starts ${service.date_in} on a season boundary; priced at the higher (peak) band`,
+      };
+    }
+  }
+
+  return { rate: candidates[0] ?? null };
+}
+
 /** Multiply the rate by exactly the quantities the basis calls for. A per_vehicle
  *  or per_group line defaults its count to 1 when the quote does not state one. */
 function lineTotal(rate: number, basis: Basis, q: Quantities): number {
-  const factors = BASIS_FACTORS[basis];
   let total = rate;
-  for (const factor of factors) {
-    const value = q[factor];
-    total *= value ?? 1;
+  for (const factor of BASIS_FACTORS[basis]) {
+    total *= q[factor] ?? 1;
   }
   return total;
 }
 
-/** Correspondence supersedes the pack; otherwise take the first located rate. */
-function selectRate(candidates: RateCandidate[]): RateCandidate | null {
-  const correspondence = candidates.find((c) => c.kind === "correspondence");
-  if (correspondence) return correspondence;
-  return candidates[0] ?? null;
-}
-
 export function priceService(service: ExtractedService): CostedLine {
-  const rate = selectRate(service.rate_candidates);
+  const base = {
+    id: service.id,
+    description: service.description,
+    basis: service.basis,
+  };
 
   if (service.basis === "complimentary") {
     return {
-      id: service.id,
-      description: service.description,
-      basis: service.basis,
+      ...base,
       quantities: service.quantities,
       unit_rate: 0,
       line_total: 0,
       confidence: { tier: "confirmed", reason: "Complimentary — included at no charge" },
-      provenance: rate?.provenance ?? null,
+      provenance: null,
     };
   }
 
+  const { rate, assumption } = selectRate(service);
+
   if (!rate) {
     return {
-      id: service.id,
-      description: service.description,
-      basis: service.basis,
+      ...base,
       quantities: service.quantities,
       unit_rate: null,
       line_total: null,
@@ -69,18 +108,18 @@ export function priceService(service: ExtractedService): CostedLine {
     };
   }
 
-  const total = lineTotal(rate.value, service.basis, service.quantities);
+  // Recompute nights from the stay dates; a passed count is only a fallback.
+  const quantities: Quantities = { ...service.quantities };
+  if (service.date_in && service.date_out) {
+    quantities.nights = nightsBetween(service.date_in, service.date_out);
+  }
+  const total = lineTotal(rate.value, service.basis, quantities);
 
-  // A carried-forward tariff is a real number from an expired source: show it, but
-  // never as confirmed. It stays out of the resolved subtotal downstream.
+  const line = { ...base, quantities, unit_rate: rate.value, line_total: total };
+
   if (rate.kind === "carried_forward") {
     return {
-      id: service.id,
-      description: service.description,
-      basis: service.basis,
-      quantities: service.quantities,
-      unit_rate: rate.value,
-      line_total: total,
+      ...line,
       confidence: {
         tier: "stale",
         reason: "Carried-forward tariff outside its validity — reconfirm before quoting",
@@ -89,32 +128,23 @@ export function priceService(service: ExtractedService): CostedLine {
     };
   }
 
-  // A computable line the extraction layer could not fully resolve — the rate is
-  // real, but a human assumption stands behind the figure. Elevate to assumption
-  // and carry the reasons through.
-  if (service.flags && service.flags.length > 0) {
+  // Assumptions from the selection (season boundary) and from extraction flags
+  // (levy counts, trailer threshold, out-of-region rate) both downgrade to
+  // assumption and carry every reason through.
+  const reasons = [
+    ...(assumption ? [assumption] : []),
+    ...(service.flags?.map((f) => f.reason) ?? []),
+  ];
+  if (reasons.length > 0) {
     return {
-      id: service.id,
-      description: service.description,
-      basis: service.basis,
-      quantities: service.quantities,
-      unit_rate: rate.value,
-      line_total: total,
-      confidence: {
-        tier: "assumption",
-        reason: service.flags.map((f) => f.reason).join("; "),
-      },
+      ...line,
+      confidence: { tier: "assumption", reason: reasons.join("; ") },
       provenance: rate.provenance,
     };
   }
 
   return {
-    id: service.id,
-    description: service.description,
-    basis: service.basis,
-    quantities: service.quantities,
-    unit_rate: rate.value,
-    line_total: total,
+    ...line,
     confidence: { tier: "confirmed", reason: "Read from a current contracted rate" },
     provenance: rate.provenance,
   };
