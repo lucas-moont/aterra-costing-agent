@@ -89,6 +89,25 @@ export function priceService(service: ExtractedService): CostedLine {
     };
   }
 
+  // A computable line the extraction layer could not fully resolve — the rate is
+  // real, but a human assumption stands behind the figure. Elevate to assumption
+  // and carry the reasons through.
+  if (service.flags && service.flags.length > 0) {
+    return {
+      id: service.id,
+      description: service.description,
+      basis: service.basis,
+      quantities: service.quantities,
+      unit_rate: rate.value,
+      line_total: total,
+      confidence: {
+        tier: "assumption",
+        reason: service.flags.map((f) => f.reason).join("; "),
+      },
+      provenance: rate.provenance,
+    };
+  }
+
   return {
     id: service.id,
     description: service.description,

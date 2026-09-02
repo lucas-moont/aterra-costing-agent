@@ -143,4 +143,28 @@ describe("priceService", () => {
     expect(line.line_total).toBe(13350);
     expect(line.confidence.tier).toBe("confirmed");
   });
+
+  it("elevates a flagged-but-computable line to an assumption", () => {
+    // Oracle svc-16: Marula levy 28 pp/night × 5 pax × 2 nights = 280, but the
+    // quote shows "2× levy" against 5 travellers — computable, but an assumption.
+    const line = priceService(
+      service({
+        id: "svc-16",
+        description: "Marula Conservation Levy",
+        basis: "per_person_per_night",
+        quantities: { pax: 5, nights: 2 },
+        rate_candidates: [{ value: 28, kind: "pack", provenance: packRef }],
+        flags: [
+          {
+            code: "levy_count_mismatch",
+            reason: "Quote shows 2× levy but 5 travellers; levy is compulsory per person",
+          },
+        ],
+      }),
+    );
+
+    expect(line.line_total).toBe(280);
+    expect(line.confidence.tier).toBe("assumption");
+    expect(line.confidence.reason).toContain("levy is compulsory per person");
+  });
 });
