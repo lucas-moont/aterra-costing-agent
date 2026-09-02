@@ -10,8 +10,8 @@ else
   py="$root/extraction/.venv/bin/python"           # POSIX venv layout
 fi
 
-echo -e "\n=== 1/3  Extraction (LangGraph + local Claude) ==="
-"$py" "$root/extraction/run_extraction.py" --cached
+echo -e "\n=== 1/3  Extraction (LangGraph + local Claude, live) ==="
+"$py" "$root/extraction/run_extraction.py"
 
 echo -e "\n=== 2/3  Extraction eval (vs golden rate set) ==="
 "$py" "$root/eval/check_extraction.py"

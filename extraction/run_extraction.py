@@ -1,12 +1,14 @@
 """Run the extraction pipeline: ingest the documents, drive Claude to extract the
 rate catalogue and the booked services, and write the artefacts.
 
-    python run_extraction.py            # live (warms the cache), then offline
-    python run_extraction.py --cached   # fail rather than call the model
+    python run_extraction.py            # live — calls the model every run (default)
+    python run_extraction.py --cached   # offline — replay the cache, never call
 
-Output lands in extraction/out/. These are the LLM's *proposals*; the analyst-curated
-extraction that feeds the engine is engine/tests/fixtures/extraction.halloran.json,
-and eval/ measures the gap between the two.
+Live is the default on purpose: we want the AI genuinely working each session. The
+committed cache is a safety net for a locked-down machine (see ADR 0005). Output lands
+in extraction/out/. These are the LLM's *proposals*; the analyst-curated extraction
+that feeds the engine is engine/tests/fixtures/extraction.halloran.json, and eval/
+measures the gap between the two.
 """
 
 from __future__ import annotations
