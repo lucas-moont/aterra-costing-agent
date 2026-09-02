@@ -1,0 +1,28 @@
+{
+  "description": "The rates the extraction must find, with the value and kind that matter for costing. Matched by (rate, kind) so a differently-worded service name still counts. Source: the pack + the Camissa email, cross-checked by hand.",
+  "expected": [
+    { "label": "Camissa Family Suite (email supersedes)", "rate": 375, "kind": "correspondence" },
+    { "label": "Camissa Classic Room (email supersedes)", "rate": 230, "kind": "correspondence" },
+    { "label": "Camissa Family Suite (pack, superseded)", "rate": 340, "kind": "pack" },
+    { "label": "Camissa Classic Room (pack, superseded)", "rate": 210, "kind": "pack" },
+    { "label": "Meet & Greet", "rate": 45, "kind": "pack" },
+    { "label": "Transfer CIA Zone 1 (day)", "rate": 210, "kind": "pack" },
+    { "label": "Trailer supplement", "rate": 65, "kind": "pack" },
+    { "label": "Table Mountain hike", "rate": 95, "kind": "pack" },
+    { "label": "Peninsula Scenic Tour", "rate": 480, "kind": "pack" },
+    { "label": "Custom Private Tour", "rate": 145, "kind": "pack" },
+    { "label": "Per Group Extra", "rate": 140, "kind": "pack" },
+    { "label": "Marula Family Chalet (green)", "rate": 620, "kind": "pack" },
+    { "label": "Marula Family Chalet (peak)", "rate": 890, "kind": "pack" },
+    { "label": "Marula Tented Pool Suite (peak)", "rate": 760, "kind": "pack" },
+    { "label": "Marula Conservation Levy", "rate": 28, "kind": "pack" },
+    { "label": "HDS to Kudu Sands", "rate": 165, "kind": "pack" },
+    { "label": "Kudu Sands to MQP", "rate": 190, "kind": "pack" },
+    { "label": "Vehicle Entrance Fee", "rate": 40, "kind": "pack" },
+    { "label": "Entrance Fee per pax", "rate": 25, "kind": "pack" },
+    { "label": "Kudu Luxury Suite", "rate": 890, "kind": "pack" },
+    { "label": "Kudu Conservation Levy", "rate": 35, "kind": "pack" },
+    { "label": "Ilha Azul Beach Villa", "rate": 780, "kind": "pack" },
+    { "label": "Helicopter VNX-Benguerra (carried forward)", "rate": 395, "kind": "carried_forward" }
+  ]
+}
