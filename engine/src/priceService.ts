@@ -69,13 +69,33 @@ export function priceService(service: ExtractedService): CostedLine {
     };
   }
 
+  const total = lineTotal(rate.value, service.basis, service.quantities);
+
+  // A carried-forward tariff is a real number from an expired source: show it, but
+  // never as confirmed. It stays out of the resolved subtotal downstream.
+  if (rate.kind === "carried_forward") {
+    return {
+      id: service.id,
+      description: service.description,
+      basis: service.basis,
+      quantities: service.quantities,
+      unit_rate: rate.value,
+      line_total: total,
+      confidence: {
+        tier: "stale",
+        reason: "Carried-forward tariff outside its validity — reconfirm before quoting",
+      },
+      provenance: rate.provenance,
+    };
+  }
+
   return {
     id: service.id,
     description: service.description,
     basis: service.basis,
     quantities: service.quantities,
     unit_rate: rate.value,
-    line_total: lineTotal(rate.value, service.basis, service.quantities),
+    line_total: total,
     confidence: { tier: "confirmed", reason: "Read from a current contracted rate" },
     provenance: rate.provenance,
   };
