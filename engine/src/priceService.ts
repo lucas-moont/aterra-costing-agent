@@ -1,5 +1,6 @@
 import type {
   Basis,
+  Confidence,
   CostedLine,
   ExtractedService,
   Quantities,
@@ -117,39 +118,39 @@ export function priceService(service: ExtractedService): CostedLine {
   if (service.date_in && service.date_out) {
     quantities.nights = nightsBetween(service.date_in, service.date_out);
   }
-  const total = lineTotal(rate.value, service.basis, quantities);
-
-  const line = { ...base, quantities, unit_rate: rate.value, line_total: total };
-
-  if (rate.kind === "carried_forward") {
-    return {
-      ...line,
-      confidence: {
-        tier: "stale",
-        reason: "Carried-forward tariff outside its validity — reconfirm before quoting",
-      },
-      provenance: rate.provenance,
-    };
-  }
-
-  // Assumptions from the selection (season boundary) and from extraction flags
-  // (levy counts, trailer threshold, out-of-region rate) both downgrade to
-  // assumption and carry every reason through.
-  const reasons = [
-    ...(assumption ? [assumption] : []),
-    ...(service.flags?.map((f) => f.reason) ?? []),
-  ];
-  if (reasons.length > 0) {
-    return {
-      ...line,
-      confidence: { tier: "assumption", reason: reasons.join("; ") },
-      provenance: rate.provenance,
-    };
-  }
 
   return {
-    ...line,
-    confidence: { tier: "confirmed", reason: "Read from a current contracted rate" },
+    ...base,
+    quantities,
+    unit_rate: rate.value,
+    line_total: lineTotal(rate.value, service.basis, quantities),
+    confidence: classify(rate, assumption, service.flags),
     provenance: rate.provenance,
   };
+}
+
+/** A priced line is stale if its rate is carried forward, an assumption if the
+ *  selection or extraction raised any (season boundary, levy counts, trailer
+ *  threshold, out-of-region rate), otherwise confirmed. */
+function classify(
+  rate: RateCandidate,
+  selectionAssumption: string | undefined,
+  flags: ExtractedService["flags"],
+): Confidence {
+  if (rate.kind === "carried_forward") {
+    return {
+      tier: "stale",
+      reason: "Carried-forward tariff outside its validity — reconfirm before quoting",
+    };
+  }
+
+  const reasons = [
+    ...(selectionAssumption ? [selectionAssumption] : []),
+    ...(flags?.map((f) => f.reason) ?? []),
+  ];
+  if (reasons.length > 0) {
+    return { tier: "assumption", reason: reasons.join("; ") };
+  }
+
+  return { tier: "confirmed", reason: "Read from a current contracted rate" };
 }
