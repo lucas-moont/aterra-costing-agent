@@ -16,6 +16,9 @@ engine/out/
 # Kept out of the repo so the submission is graded on the engine, not a lookup table.
 /oracle/
 
+# Internal working aids — not part of the submission
+/HANDOFF.md
+
 # Env / secrets
 .env
 .env.local

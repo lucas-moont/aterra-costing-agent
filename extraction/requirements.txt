@@ -1,0 +1,7 @@
+# Extraction layer — document ingestion + LLM orchestration.
+# The model is the local Claude Code CLI (driven as a subprocess), so there is no
+# provider SDK or API key here.
+langgraph==1.2.11
+langchain-core==1.6.1
+langsmith==0.12.1          # optional tracing, enabled by env flag
+pdfplumber==0.11.10        # PDF text ingestion
