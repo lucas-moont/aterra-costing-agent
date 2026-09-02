@@ -1,0 +1,664 @@
+{
+  "quote_ref": "MRA-2027-0641",
+  "lines": [
+    {
+      "id": "svc-01",
+      "description": "Meet & Greet — One Way Assistance (arrival CPT)",
+      "basis": "per_person_per_movement",
+      "quantities": {
+        "pax": 5,
+        "movements": 1
+      },
+      "unit_rate": 45,
+      "line_total": 225,
+      "confidence": {
+        "tier": "confirmed",
+        "reason": "Read from a current contracted rate"
+      },
+      "provenance": {
+        "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+        "locator": "§2 Cape Town Touring › 'One Way Assistance (Meet & Greet)'",
+        "raw_value": "45.00",
+        "ref": "pack#s2-meet-greet"
+      }
+    },
+    {
+      "id": "svc-02",
+      "description": "Transfer CIA to Zone 1 (06H00–21H00) with guide, CPT → Camissa",
+      "basis": "per_vehicle",
+      "quantities": {
+        "vehicles": 1
+      },
+      "unit_rate": 210,
+      "line_total": 210,
+      "confidence": {
+        "tier": "confirmed",
+        "reason": "Read from a current contracted rate"
+      },
+      "provenance": {
+        "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+        "locator": "§2 Cape Town Touring › 'Transfer CIA to Zone 1, 06H00–21H00, with guide'",
+        "raw_value": "210.00",
+        "ref": "pack#s2-transfer-zone1-day"
+      }
+    },
+    {
+      "id": "svc-03",
+      "description": "Trailer supplement (arrival transfer)",
+      "basis": "per_group",
+      "quantities": {
+        "groups": 1
+      },
+      "unit_rate": 65,
+      "line_total": 65,
+      "confidence": {
+        "tier": "assumption",
+        "reason": "Trailer rule §2a applies to groups of 6+ pax; this group is 5. Charged as booked — confirm luggage basis"
+      },
+      "provenance": {
+        "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+        "locator": "§2a Trailer supplement",
+        "raw_value": "65.00",
+        "ref": "pack#s2a-trailer"
+      }
+    },
+    {
+      "id": "svc-04",
+      "description": "Camissa — Family Suite (B&B)",
+      "basis": "per_room_per_night",
+      "quantities": {
+        "rooms": 1,
+        "nights": 4
+      },
+      "unit_rate": 375,
+      "line_total": 1500,
+      "confidence": {
+        "tier": "confirmed",
+        "reason": "Read from a current contracted rate"
+      },
+      "provenance": {
+        "document": "Supplier-email-Camissa-2027-rates.txt",
+        "locator": "body › 'Family Suite (B&B) USD 375.00 per room per night'",
+        "raw_value": "USD 375.00",
+        "ref": "email-camissa-2026-08-12#family-suite"
+      }
+    },
+    {
+      "id": "svc-05",
+      "description": "Camissa — Classic Room (B&B)",
+      "basis": "per_room_per_night",
+      "quantities": {
+        "rooms": 1,
+        "nights": 4
+      },
+      "unit_rate": 230,
+      "line_total": 920,
+      "confidence": {
+        "tier": "confirmed",
+        "reason": "Read from a current contracted rate"
+      },
+      "provenance": {
+        "document": "Supplier-email-Camissa-2027-rates.txt",
+        "locator": "body › 'Classic Room (B&B) USD 230.00 per room per night'",
+        "raw_value": "USD 230.00",
+        "ref": "email-camissa-2026-08-12#classic-room"
+      }
+    },
+    {
+      "id": "svc-06",
+      "description": "SLOW Walks & Hikes — Rise & Climb, Table Mountain",
+      "basis": "per_person",
+      "quantities": {
+        "pax": 5
+      },
+      "unit_rate": 95,
+      "line_total": 475,
+      "confidence": {
+        "tier": "confirmed",
+        "reason": "Read from a current contracted rate"
+      },
+      "provenance": {
+        "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+        "locator": "§2 Cape Town Touring › 'SLOW Walks & Hikes — Rise & Climb, Table Mountain'",
+        "raw_value": "95.00",
+        "ref": "pack#s2-table-mountain"
+      }
+    },
+    {
+      "id": "svc-07",
+      "description": "Full Day Peninsula Scenic Tour, private",
+      "basis": "per_vehicle",
+      "quantities": {
+        "vehicles": 1
+      },
+      "unit_rate": 480,
+      "line_total": 480,
+      "confidence": {
+        "tier": "confirmed",
+        "reason": "Read from a current contracted rate"
+      },
+      "provenance": {
+        "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+        "locator": "§2 Cape Town Touring › 'Full Day Peninsula Scenic Tour, private'",
+        "raw_value": "480.00",
+        "ref": "pack#s2-peninsula"
+      }
+    },
+    {
+      "id": "svc-08",
+      "description": "Custom Private Tour, full day",
+      "basis": "per_person",
+      "quantities": {
+        "pax": 5
+      },
+      "unit_rate": 145,
+      "line_total": 725,
+      "confidence": {
+        "tier": "confirmed",
+        "reason": "Read from a current contracted rate"
+      },
+      "provenance": {
+        "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+        "locator": "§2 Cape Town Touring › 'Custom Private Tour, full day'",
+        "raw_value": "145.00",
+        "ref": "pack#s2-custom-tour"
+      }
+    },
+    {
+      "id": "svc-09",
+      "description": "Custom Private Tour — Per Group Extra",
+      "basis": "per_group",
+      "quantities": {
+        "groups": 1
+      },
+      "unit_rate": 140,
+      "line_total": 140,
+      "confidence": {
+        "tier": "confirmed",
+        "reason": "Read from a current contracted rate"
+      },
+      "provenance": {
+        "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+        "locator": "§2b Custom Private Tour Per Group Extra",
+        "raw_value": "140.00",
+        "ref": "pack#s2b-group-extra"
+      }
+    },
+    {
+      "id": "svc-10",
+      "description": "Transfer CIA to Zone 1 (06H00–21H00) with guide, Camissa → CPT",
+      "basis": "per_vehicle",
+      "quantities": {
+        "vehicles": 1
+      },
+      "unit_rate": 210,
+      "line_total": 210,
+      "confidence": {
+        "tier": "confirmed",
+        "reason": "Read from a current contracted rate"
+      },
+      "provenance": {
+        "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+        "locator": "§2 Cape Town Touring › 'Transfer CIA to Zone 1, 06H00–21H00, with guide'",
+        "raw_value": "210.00",
+        "ref": "pack#s2-transfer-zone1-day"
+      }
+    },
+    {
+      "id": "svc-11",
+      "description": "Trailer supplement (departure transfer)",
+      "basis": "per_group",
+      "quantities": {
+        "groups": 1
+      },
+      "unit_rate": 65,
+      "line_total": 65,
+      "confidence": {
+        "tier": "assumption",
+        "reason": "Trailer rule §2a applies to groups of 6+ pax; this group is 5. Charged as booked — confirm luggage basis"
+      },
+      "provenance": {
+        "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+        "locator": "§2a Trailer supplement",
+        "raw_value": "65.00",
+        "ref": "pack#s2a-trailer"
+      }
+    },
+    {
+      "id": "svc-12",
+      "description": "Flight Zambezi Air, CPT → Hoedspruit (HDS)",
+      "basis": "per_person",
+      "quantities": {
+        "pax": 5
+      },
+      "unit_rate": null,
+      "line_total": null,
+      "confidence": {
+        "tier": "unresolved",
+        "reason": "§8 airfares are quoted live at booking and not carried in the pack"
+      },
+      "provenance": null
+    },
+    {
+      "id": "svc-13",
+      "description": "Complimentary scheduled transfer, HDS → Marula River Lodge",
+      "basis": "complimentary",
+      "quantities": {},
+      "unit_rate": 0,
+      "line_total": 0,
+      "confidence": {
+        "tier": "confirmed",
+        "reason": "Complimentary — included at no charge"
+      },
+      "provenance": null
+    },
+    {
+      "id": "svc-14",
+      "description": "Marula River Lodge — Family Chalet (FI)",
+      "basis": "per_unit_per_night",
+      "quantities": {
+        "units": 1,
+        "nights": 2
+      },
+      "unit_rate": 890,
+      "line_total": 1780,
+      "confidence": {
+        "tier": "assumption",
+        "reason": "Stay starts 2027-07-09 on a season boundary; priced at the higher (peak) band"
+      },
+      "provenance": {
+        "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+        "locator": "§3 Marula › 'Family Chalet' Peak Season",
+        "raw_value": "890.00",
+        "ref": "pack#s3-family-chalet-peak"
+      }
+    },
+    {
+      "id": "svc-15",
+      "description": "Marula River Lodge — Tented Pool Suite (FI)",
+      "basis": "per_unit_per_night",
+      "quantities": {
+        "units": 1,
+        "nights": 2
+      },
+      "unit_rate": 760,
+      "line_total": 1520,
+      "confidence": {
+        "tier": "assumption",
+        "reason": "Stay starts 2027-07-09 on a season boundary; priced at the higher (peak) band"
+      },
+      "provenance": {
+        "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+        "locator": "§3 Marula › 'Tented Pool Suite' Peak Season",
+        "raw_value": "760.00",
+        "ref": "pack#s3-tented-pool-peak"
+      }
+    },
+    {
+      "id": "svc-16",
+      "description": "Marula Reserve Conservation Levy",
+      "basis": "per_person_per_night",
+      "quantities": {
+        "pax": 5,
+        "nights": 2
+      },
+      "unit_rate": 28,
+      "line_total": 280,
+      "confidence": {
+        "tier": "assumption",
+        "reason": "Quote shows 2× levy but there are 5 travellers; the levy is compulsory per person per night"
+      },
+      "provenance": {
+        "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+        "locator": "§3 Marula › Conservation Levy",
+        "raw_value": "28.00",
+        "ref": "pack#s3-levy"
+      }
+    },
+    {
+      "id": "svc-17",
+      "description": "Transfer HDS to Kudu Sands, Marula River Lodge → Kudu Ridge",
+      "basis": "per_person",
+      "quantities": {
+        "pax": 5
+      },
+      "unit_rate": 165,
+      "line_total": 825,
+      "confidence": {
+        "tier": "confirmed",
+        "reason": "Read from a current contracted rate"
+      },
+      "provenance": {
+        "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+        "locator": "§5 Lowveld Transfers › 'HDS to Kudu Sands lodges'",
+        "raw_value": "165.00",
+        "ref": "pack#s5-hds-kudu"
+      }
+    },
+    {
+      "id": "svc-18",
+      "description": "Vehicle Entrance Fee (svc-17 transfer)",
+      "basis": "per_group",
+      "quantities": {
+        "groups": 1
+      },
+      "unit_rate": 40,
+      "line_total": 40,
+      "confidence": {
+        "tier": "confirmed",
+        "reason": "Read from a current contracted rate"
+      },
+      "provenance": {
+        "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+        "locator": "§5 Lowveld Transfers › 'Vehicle Entrance Fee'",
+        "raw_value": "40.00",
+        "ref": "pack#s5-vehicle-entrance"
+      }
+    },
+    {
+      "id": "svc-19",
+      "description": "Kudu Ridge — 2× Luxury Suite (FI), 5 pax incl. triple",
+      "basis": "per_person_sharing_per_night",
+      "quantities": {
+        "pax": 5,
+        "nights": 3
+      },
+      "unit_rate": 890,
+      "line_total": 13350,
+      "confidence": {
+        "tier": "confirmed",
+        "reason": "Read from a current contracted rate"
+      },
+      "provenance": {
+        "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+        "locator": "§4 Kudu Sands › 'Luxury Suite' (per person sharing); triple per §4a",
+        "raw_value": "890.00",
+        "ref": "pack#s4-luxury-suite"
+      }
+    },
+    {
+      "id": "svc-20",
+      "description": "Kudu Sands Conservation Levy",
+      "basis": "per_person_per_night",
+      "quantities": {
+        "pax": 5,
+        "nights": 3
+      },
+      "unit_rate": 35,
+      "line_total": 525,
+      "confidence": {
+        "tier": "assumption",
+        "reason": "Quote shows 3× levy but there are 5 travellers; the levy is compulsory per person per night"
+      },
+      "provenance": {
+        "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+        "locator": "§4 Kudu Sands › Conservation Levy",
+        "raw_value": "35.00",
+        "ref": "pack#s4-levy"
+      }
+    },
+    {
+      "id": "svc-21",
+      "description": "Transfer Kudu Sands → MQP (Kruger Mpumalanga)",
+      "basis": "per_person",
+      "quantities": {
+        "pax": 5
+      },
+      "unit_rate": 190,
+      "line_total": 950,
+      "confidence": {
+        "tier": "confirmed",
+        "reason": "Read from a current contracted rate"
+      },
+      "provenance": {
+        "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+        "locator": "§5 Lowveld Transfers › 'Kudu Sands lodges to MQP'",
+        "raw_value": "190.00",
+        "ref": "pack#s5-kudu-mqp"
+      }
+    },
+    {
+      "id": "svc-22",
+      "description": "Entrance Fee per pax (svc-21 transfer)",
+      "basis": "per_person",
+      "quantities": {
+        "pax": 5
+      },
+      "unit_rate": 25,
+      "line_total": 125,
+      "confidence": {
+        "tier": "confirmed",
+        "reason": "Read from a current contracted rate"
+      },
+      "provenance": {
+        "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+        "locator": "§5 Lowveld Transfers › 'Entrance Fee'",
+        "raw_value": "25.00",
+        "ref": "pack#s5-entrance-fee"
+      }
+    },
+    {
+      "id": "svc-23",
+      "description": "Vehicle Entrance Fee (svc-21 transfer)",
+      "basis": "per_group",
+      "quantities": {
+        "groups": 1
+      },
+      "unit_rate": 40,
+      "line_total": 40,
+      "confidence": {
+        "tier": "confirmed",
+        "reason": "Read from a current contracted rate"
+      },
+      "provenance": {
+        "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+        "locator": "§5 Lowveld Transfers › 'Vehicle Entrance Fee'",
+        "raw_value": "40.00",
+        "ref": "pack#s5-vehicle-entrance"
+      }
+    },
+    {
+      "id": "svc-24",
+      "description": "Flight Zambezi Air, Nelspruit → Vilanculos (VNX)",
+      "basis": "per_person",
+      "quantities": {
+        "pax": 5
+      },
+      "unit_rate": null,
+      "line_total": null,
+      "confidence": {
+        "tier": "unresolved",
+        "reason": "§8 airfares are quoted live at booking and not carried in the pack"
+      },
+      "provenance": null
+    },
+    {
+      "id": "svc-25",
+      "description": "Helicopter transfer VNX → Ilha Azul (Benguerra)",
+      "basis": "per_person",
+      "quantities": {
+        "pax": 5
+      },
+      "unit_rate": 395,
+      "line_total": 1975,
+      "confidence": {
+        "tier": "stale",
+        "reason": "Carried-forward tariff outside its validity — reconfirm before quoting"
+      },
+      "provenance": {
+        "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+        "locator": "§7 Mozambique Air & Sea › 'Helicopter transfer VNX – Benguerra' (2025 tariff, carried forward)",
+        "raw_value": "395.00",
+        "ref": "pack#s7-helicopter"
+      }
+    },
+    {
+      "id": "svc-26",
+      "description": "Ilha Azul Beach Lodge — Beach Villa (FI)",
+      "basis": "per_villa_per_night",
+      "quantities": {
+        "villas": 1,
+        "nights": 3
+      },
+      "unit_rate": 780,
+      "line_total": 2340,
+      "confidence": {
+        "tier": "confirmed",
+        "reason": "Read from a current contracted rate"
+      },
+      "provenance": {
+        "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+        "locator": "§6 Mozambique › 'Beach Villa'",
+        "raw_value": "780.00",
+        "ref": "pack#s6-beach-villa"
+      }
+    },
+    {
+      "id": "svc-27",
+      "description": "Ilha Azul Beach Lodge — Beach Villa Grande (FI)",
+      "basis": "per_villa_per_night",
+      "quantities": {
+        "villas": 1
+      },
+      "unit_rate": null,
+      "line_total": null,
+      "confidence": {
+        "tier": "unresolved",
+        "reason": "'Beach Villa Grande' has no matching rate in the pack; §9 requires a re-quote before issue"
+      },
+      "provenance": null
+    },
+    {
+      "id": "svc-28",
+      "description": "Helicopter transfer Ilha Azul → VNX",
+      "basis": "per_person",
+      "quantities": {
+        "pax": 5
+      },
+      "unit_rate": 395,
+      "line_total": 1975,
+      "confidence": {
+        "tier": "stale",
+        "reason": "Carried-forward tariff outside its validity — reconfirm before quoting"
+      },
+      "provenance": {
+        "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+        "locator": "§7 Mozambique Air & Sea › 'Helicopter transfer VNX – Benguerra' (2025 tariff, carried forward)",
+        "raw_value": "395.00",
+        "ref": "pack#s7-helicopter"
+      }
+    },
+    {
+      "id": "svc-29",
+      "description": "Flight Zambezi Air, VNX → Johannesburg (JNB)",
+      "basis": "per_person",
+      "quantities": {
+        "pax": 5
+      },
+      "unit_rate": null,
+      "line_total": null,
+      "confidence": {
+        "tier": "unresolved",
+        "reason": "§8 airfares are quoted live at booking and not carried in the pack"
+      },
+      "provenance": null
+    },
+    {
+      "id": "svc-30",
+      "description": "Meet & Greet — One Way Assistance (JNB)",
+      "basis": "per_person_per_movement",
+      "quantities": {
+        "pax": 5,
+        "movements": 1
+      },
+      "unit_rate": 45,
+      "line_total": 225,
+      "confidence": {
+        "tier": "assumption",
+        "reason": "Meet & Greet rate is a Cape Town §2 rate; there is no Johannesburg rate in the pack — confirm national applicability"
+      },
+      "provenance": {
+        "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+        "locator": "§2 Cape Town Touring › 'One Way Assistance (Meet & Greet)'",
+        "raw_value": "45.00",
+        "ref": "pack#s2-meet-greet"
+      }
+    }
+  ],
+  "needs_review": [
+    {
+      "id": "svc-03",
+      "reason": "Trailer rule §2a applies to groups of 6+ pax; this group is 5. Charged as booked — confirm luggage basis",
+      "tier": "assumption"
+    },
+    {
+      "id": "svc-11",
+      "reason": "Trailer rule §2a applies to groups of 6+ pax; this group is 5. Charged as booked — confirm luggage basis",
+      "tier": "assumption"
+    },
+    {
+      "id": "svc-12",
+      "reason": "§8 airfares are quoted live at booking and not carried in the pack",
+      "tier": "unresolved"
+    },
+    {
+      "id": "svc-14",
+      "reason": "Stay starts 2027-07-09 on a season boundary; priced at the higher (peak) band",
+      "tier": "assumption"
+    },
+    {
+      "id": "svc-15",
+      "reason": "Stay starts 2027-07-09 on a season boundary; priced at the higher (peak) band",
+      "tier": "assumption"
+    },
+    {
+      "id": "svc-16",
+      "reason": "Quote shows 2× levy but there are 5 travellers; the levy is compulsory per person per night",
+      "tier": "assumption"
+    },
+    {
+      "id": "svc-20",
+      "reason": "Quote shows 3× levy but there are 5 travellers; the levy is compulsory per person per night",
+      "tier": "assumption"
+    },
+    {
+      "id": "svc-24",
+      "reason": "§8 airfares are quoted live at booking and not carried in the pack",
+      "tier": "unresolved"
+    },
+    {
+      "id": "svc-25",
+      "reason": "Carried-forward tariff outside its validity — reconfirm before quoting",
+      "tier": "stale"
+    },
+    {
+      "id": "svc-27",
+      "reason": "'Beach Villa Grande' has no matching rate in the pack; §9 requires a re-quote before issue",
+      "tier": "unresolved"
+    },
+    {
+      "id": "svc-28",
+      "reason": "Carried-forward tariff outside its validity — reconfirm before quoting",
+      "tier": "stale"
+    },
+    {
+      "id": "svc-29",
+      "reason": "§8 airfares are quoted live at booking and not carried in the pack",
+      "tier": "unresolved"
+    },
+    {
+      "id": "svc-30",
+      "reason": "Meet & Greet rate is a Cape Town §2 rate; there is no Johannesburg rate in the pack — confirm national applicability",
+      "tier": "assumption"
+    }
+  ],
+  "totals": {
+    "currency": "USD",
+    "confirmed_subtotal": 22555,
+    "assumption_subtotal": 4460,
+    "resolved_subtotal": 27015,
+    "stale_indicative": 3950,
+    "unresolved_count": 4,
+    "needs_review_count": 13
+  }
+}

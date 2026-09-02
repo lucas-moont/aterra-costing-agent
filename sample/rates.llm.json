@@ -1,0 +1,438 @@
+[
+  {
+    "service_name": "Family Suite",
+    "section": "\u00c2\u00a71 Cape Town Accommodation",
+    "rate": 340.0,
+    "raw_value": "340.00",
+    "basis": "per_room_per_night",
+    "kind": "pack",
+    "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+    "validity": {
+      "from": "2027-01-01",
+      "to": "2027-12-31"
+    },
+    "season": null
+  },
+  {
+    "service_name": "Classic Room",
+    "section": "\u00c2\u00a71 Cape Town Accommodation",
+    "rate": 210.0,
+    "raw_value": "210.00",
+    "basis": "per_room_per_night",
+    "kind": "pack",
+    "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+    "validity": {
+      "from": "2027-01-01",
+      "to": "2027-12-31"
+    },
+    "season": null
+  },
+  {
+    "service_name": "Deluxe Sea Facing",
+    "section": "\u00c2\u00a71 Cape Town Accommodation",
+    "rate": 295.0,
+    "raw_value": "295.00",
+    "basis": "per_room_per_night",
+    "kind": "pack",
+    "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+    "validity": {
+      "from": "2027-01-01",
+      "to": "2027-12-31"
+    },
+    "season": null
+  },
+  {
+    "service_name": "One Way Assistance (Meet & Greet)",
+    "section": "\u00c2\u00a72 Cape Town Touring & Transfers",
+    "rate": 45.0,
+    "raw_value": "45.00",
+    "basis": "per_person_per_movement",
+    "kind": "pack",
+    "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+    "validity": null,
+    "season": null
+  },
+  {
+    "service_name": "Transfer CIA to Zone 1, 06H00\u00e2\u20ac\u201c21H00, with guide",
+    "section": "\u00c2\u00a72 Cape Town Touring & Transfers",
+    "rate": 210.0,
+    "raw_value": "210.00",
+    "basis": "per_vehicle",
+    "kind": "pack",
+    "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+    "validity": null,
+    "season": null
+  },
+  {
+    "service_name": "Transfer CIA to Zone 1, 21H00\u00e2\u20ac\u201c06H00, with guide",
+    "section": "\u00c2\u00a72 Cape Town Touring & Transfers",
+    "rate": 285.0,
+    "raw_value": "285.00",
+    "basis": "per_vehicle",
+    "kind": "pack",
+    "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+    "validity": null,
+    "season": null
+  },
+  {
+    "service_name": "SLOW Walks & Hikes \u00e2\u20ac\u201d Rise & Climb, Table Mountain",
+    "section": "\u00c2\u00a72 Cape Town Touring & Transfers",
+    "rate": 95.0,
+    "raw_value": "95.00",
+    "basis": "per_person",
+    "kind": "pack",
+    "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+    "validity": null,
+    "season": null
+  },
+  {
+    "service_name": "Full Day Peninsula Scenic Tour, private",
+    "section": "\u00c2\u00a72 Cape Town Touring & Transfers",
+    "rate": 480.0,
+    "raw_value": "480.00",
+    "basis": "per_vehicle",
+    "kind": "pack",
+    "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+    "validity": null,
+    "season": null
+  },
+  {
+    "service_name": "Custom Private Tour, full day",
+    "section": "\u00c2\u00a72 Cape Town Touring & Transfers",
+    "rate": 145.0,
+    "raw_value": "145.00",
+    "basis": "per_person",
+    "kind": "pack",
+    "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+    "validity": null,
+    "season": null
+  },
+  {
+    "service_name": "Trailer supplement (2a)",
+    "section": "\u00c2\u00a72 Cape Town Touring & Transfers",
+    "rate": 65.0,
+    "raw_value": "65.00",
+    "basis": "per_group",
+    "kind": "pack",
+    "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+    "validity": null,
+    "season": null
+  },
+  {
+    "service_name": "Custom Private Tour Per Group Extra (2b)",
+    "section": "\u00c2\u00a72 Cape Town Touring & Transfers",
+    "rate": 140.0,
+    "raw_value": "140.00",
+    "basis": "per_group",
+    "kind": "pack",
+    "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+    "validity": null,
+    "season": null
+  },
+  {
+    "service_name": "Family Chalet",
+    "section": "\u00c2\u00a73 Marula Reserve \u00e2\u20ac\u201d Marula River Lodge",
+    "rate": 620.0,
+    "raw_value": "620.00",
+    "basis": "per_unit_per_night",
+    "kind": "pack",
+    "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+    "validity": null,
+    "season": {
+      "from": "2027-04-01",
+      "to": "2027-07-09"
+    }
+  },
+  {
+    "service_name": "Family Chalet",
+    "section": "\u00c2\u00a73 Marula Reserve \u00e2\u20ac\u201d Marula River Lodge",
+    "rate": 890.0,
+    "raw_value": "890.00",
+    "basis": "per_unit_per_night",
+    "kind": "pack",
+    "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+    "validity": null,
+    "season": {
+      "from": "2027-07-09",
+      "to": "2027-10-31"
+    }
+  },
+  {
+    "service_name": "Tented Pool Suite",
+    "section": "\u00c2\u00a73 Marula Reserve \u00e2\u20ac\u201d Marula River Lodge",
+    "rate": 540.0,
+    "raw_value": "540.00",
+    "basis": "per_unit_per_night",
+    "kind": "pack",
+    "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+    "validity": null,
+    "season": {
+      "from": "2027-04-01",
+      "to": "2027-07-09"
+    }
+  },
+  {
+    "service_name": "Tented Pool Suite",
+    "section": "\u00c2\u00a73 Marula Reserve \u00e2\u20ac\u201d Marula River Lodge",
+    "rate": 760.0,
+    "raw_value": "760.00",
+    "basis": "per_unit_per_night",
+    "kind": "pack",
+    "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+    "validity": null,
+    "season": {
+      "from": "2027-07-09",
+      "to": "2027-10-31"
+    }
+  },
+  {
+    "service_name": "River Lodge Standard",
+    "section": "\u00c2\u00a73 Marula Reserve \u00e2\u20ac\u201d Marula River Lodge",
+    "rate": 460.0,
+    "raw_value": "460.00",
+    "basis": "per_room_per_night",
+    "kind": "pack",
+    "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+    "validity": null,
+    "season": {
+      "from": "2027-04-01",
+      "to": "2027-07-09"
+    }
+  },
+  {
+    "service_name": "River Lodge Standard",
+    "section": "\u00c2\u00a73 Marula Reserve \u00e2\u20ac\u201d Marula River Lodge",
+    "rate": 640.0,
+    "raw_value": "640.00",
+    "basis": "per_room_per_night",
+    "kind": "pack",
+    "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+    "validity": null,
+    "season": {
+      "from": "2027-07-09",
+      "to": "2027-10-31"
+    }
+  },
+  {
+    "service_name": "Marula Reserve Conservation Levy",
+    "section": "\u00c2\u00a73 Marula Reserve \u00e2\u20ac\u201d Marula River Lodge",
+    "rate": 28.0,
+    "raw_value": "28.00",
+    "basis": "per_person_per_night",
+    "kind": "pack",
+    "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+    "validity": null,
+    "season": null
+  },
+  {
+    "service_name": "Luxury Suite",
+    "section": "\u00c2\u00a74 Kudu Sands \u00e2\u20ac\u201d Kudu Ridge Private Game Reserve",
+    "rate": 890.0,
+    "raw_value": "890.00",
+    "basis": "per_person_sharing_per_night",
+    "kind": "pack",
+    "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+    "validity": null,
+    "season": null
+  },
+  {
+    "service_name": "Luxury Suite \u00e2\u20ac\u201d single occupancy",
+    "section": "\u00c2\u00a74 Kudu Sands \u00e2\u20ac\u201d Kudu Ridge Private Game Reserve",
+    "rate": 1245.0,
+    "raw_value": "1,245.00",
+    "basis": "per_person_per_night",
+    "kind": "pack",
+    "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+    "validity": null,
+    "season": null
+  },
+  {
+    "service_name": "Ivory Presidential Suite",
+    "section": "\u00c2\u00a74 Kudu Sands \u00e2\u20ac\u201d Kudu Ridge Private Game Reserve",
+    "rate": 1480.0,
+    "raw_value": "1,480.00",
+    "basis": "per_person_sharing_per_night",
+    "kind": "pack",
+    "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+    "validity": null,
+    "season": null
+  },
+  {
+    "service_name": "Kudu Sands Conservation Levy",
+    "section": "\u00c2\u00a74 Kudu Sands \u00e2\u20ac\u201d Kudu Ridge Private Game Reserve",
+    "rate": 35.0,
+    "raw_value": "35.00",
+    "basis": "per_person_per_night",
+    "kind": "pack",
+    "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+    "validity": null,
+    "season": null
+  },
+  {
+    "service_name": "HDS to Kudu Sands lodges",
+    "section": "\u00c2\u00a75 Lowveld \u00e2\u20ac\u201d Road Transfers",
+    "rate": 165.0,
+    "raw_value": "165.00",
+    "basis": "per_person_per_movement",
+    "kind": "pack",
+    "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+    "validity": {
+      "from": "2027-01-01",
+      "to": "2027-12-31"
+    },
+    "season": null
+  },
+  {
+    "service_name": "Kudu Sands lodges to MQP (Kruger Mpumalanga)",
+    "section": "\u00c2\u00a75 Lowveld \u00e2\u20ac\u201d Road Transfers",
+    "rate": 190.0,
+    "raw_value": "190.00",
+    "basis": "per_person_per_movement",
+    "kind": "pack",
+    "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+    "validity": {
+      "from": "2027-01-01",
+      "to": "2027-12-31"
+    },
+    "season": null
+  },
+  {
+    "service_name": "HDS to Marula Reserve lodges",
+    "section": "\u00c2\u00a75 Lowveld \u00e2\u20ac\u201d Road Transfers",
+    "rate": 140.0,
+    "raw_value": "140.00",
+    "basis": "per_person_per_movement",
+    "kind": "pack",
+    "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+    "validity": {
+      "from": "2027-01-01",
+      "to": "2027-12-31"
+    },
+    "season": null
+  },
+  {
+    "service_name": "Vehicle Entrance Fee",
+    "section": "\u00c2\u00a75 Lowveld \u00e2\u20ac\u201d Road Transfers",
+    "rate": 40.0,
+    "raw_value": "40.00",
+    "basis": "per_group",
+    "kind": "pack",
+    "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+    "validity": null,
+    "season": null
+  },
+  {
+    "service_name": "Entrance Fee",
+    "section": "\u00c2\u00a75 Lowveld \u00e2\u20ac\u201d Road Transfers",
+    "rate": 25.0,
+    "raw_value": "25.00",
+    "basis": "per_person",
+    "kind": "pack",
+    "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+    "validity": null,
+    "season": null
+  },
+  {
+    "service_name": "Beach Villa",
+    "section": "\u00c2\u00a76 Mozambique \u00e2\u20ac\u201d Benguerra/Bazaruto Archipelago",
+    "rate": 780.0,
+    "raw_value": "780.00",
+    "basis": "per_villa_per_night",
+    "kind": "pack",
+    "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+    "validity": {
+      "from": "2027-01-01",
+      "to": "2027-12-31"
+    },
+    "season": null
+  },
+  {
+    "service_name": "Infinity Beach Villa",
+    "section": "\u00c2\u00a76 Mozambique \u00e2\u20ac\u201d Benguerra/Bazaruto Archipelago",
+    "rate": 1040.0,
+    "raw_value": "1,040.00",
+    "basis": "per_villa_per_night",
+    "kind": "pack",
+    "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+    "validity": {
+      "from": "2027-01-01",
+      "to": "2027-12-31"
+    },
+    "season": null
+  },
+  {
+    "service_name": "Presidential Villa",
+    "section": "\u00c2\u00a76 Mozambique \u00e2\u20ac\u201d Benguerra/Bazaruto Archipelago",
+    "rate": 2150.0,
+    "raw_value": "2,150.00",
+    "basis": "per_villa_per_night",
+    "kind": "pack",
+    "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+    "validity": {
+      "from": "2027-01-01",
+      "to": "2027-12-31"
+    },
+    "season": null
+  },
+  {
+    "service_name": "Helicopter transfer VNX (Vilanculos) \u00e2\u20ac\u201c Benguerra island lodges",
+    "section": "\u00c2\u00a77 Mozambique \u00e2\u20ac\u201d Air & Sea Transfers",
+    "rate": 395.0,
+    "raw_value": "395.00",
+    "basis": "per_person_per_movement",
+    "kind": "carried_forward",
+    "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+    "validity": {
+      "from": "2025-01-01",
+      "to": "2026-12-31"
+    },
+    "season": null
+  },
+  {
+    "service_name": "Speedboat transfer VNX \u00e2\u20ac\u201c Benguerra island lodges",
+    "section": "\u00c2\u00a77 Mozambique \u00e2\u20ac\u201d Air & Sea Transfers",
+    "rate": 145.0,
+    "raw_value": "145.00",
+    "basis": "per_person_per_movement",
+    "kind": "carried_forward",
+    "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+    "validity": {
+      "from": "2025-01-01",
+      "to": "2026-12-31"
+    },
+    "season": null
+  },
+  {
+    "service_name": "Family Suite",
+    "section": "Camissa Boutique Hotel \u00e2\u20ac\u201d 2027 revised rates",
+    "rate": 375.0,
+    "raw_value": "USD 375.00",
+    "basis": "per_room_per_night",
+    "kind": "correspondence",
+    "document": "Supplier-email-Camissa-2027-rates.txt",
+    "validity": null,
+    "season": null
+  },
+  {
+    "service_name": "Classic Room",
+    "section": "Camissa Boutique Hotel \u00e2\u20ac\u201d 2027 revised rates",
+    "rate": 230.0,
+    "raw_value": "USD 230.00",
+    "basis": "per_room_per_night",
+    "kind": "correspondence",
+    "document": "Supplier-email-Camissa-2027-rates.txt",
+    "validity": null,
+    "season": null
+  },
+  {
+    "service_name": "Deluxe Sea Facing",
+    "section": "Camissa Boutique Hotel \u00e2\u20ac\u201d 2027 revised rates",
+    "rate": 320.0,
+    "raw_value": "USD 320.00",
+    "basis": "per_room_per_night",
+    "kind": "correspondence",
+    "document": "Supplier-email-Camissa-2027-rates.txt",
+    "validity": null,
+    "season": null
+  }
+]
