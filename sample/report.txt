@@ -1,0 +1,49 @@
+
+  Costed quotation — MRA-2027-0641
+  30 services read · full detail in C:\Users\thewo\Documents\Coding Challenge\Part 2 - AI LEAD\aterra-costing-agent\engine\out\quotation.json
+
+  WHAT WE CAN PRICE
+    Read from signed rates      $22,555.00
+    Priced on an assumption      $4,460.00   (fine to use, but flagged below)
+    ────────────────────────────────────────
+    Subtotal we stand behind    $27,015.00
+
+  NOT IN THAT SUBTOTAL — on purpose
+    Stale rate (reconfirm)       $3,950.00   2 line(s) on an old tariff
+    No price yet                         —   4 line(s) still need a supplier
+
+  ⚠ 13 things to check before this goes to a client:
+
+  Priced, but on an assumption — double-check  (7)
+    • Trailer supplement (arrival transfer)
+        Trailer rule §2a applies to groups of 6+ pax; this group is 5. Charged as booked — confirm luggage basis
+    • Trailer supplement (departure transfer)
+        Trailer rule §2a applies to groups of 6+ pax; this group is 5. Charged as booked — confirm luggage basis
+    • Marula River Lodge — Family Chalet (FI)
+        Stay starts 2027-07-09 on a season boundary; priced at the higher (peak) band
+    • Marula River Lodge — Tented Pool Suite (FI)
+        Stay starts 2027-07-09 on a season boundary; priced at the higher (peak) band
+    • Marula Reserve Conservation Levy
+        Quote shows 2× levy but there are 5 travellers; the levy is compulsory per person per night
+    • Kudu Sands Conservation Levy
+        Quote shows 3× levy but there are 5 travellers; the levy is compulsory per person per night
+    • Meet & Greet — One Way Assistance (JNB)
+        Meet & Greet rate is a Cape Town §2 rate; there is no Johannesburg rate in the pack — confirm national applicability
+
+  Old tariff — reconfirm with the supplier  (2)
+    • Helicopter transfer VNX → Ilha Azul (Benguerra)
+        Carried-forward tariff outside its validity — reconfirm before quoting
+    • Helicopter transfer Ilha Azul → VNX
+        Carried-forward tariff outside its validity — reconfirm before quoting
+
+  No price found — a supplier has to fill this in  (4)
+    • Flight Zambezi Air, CPT → Hoedspruit (HDS)
+        §8 airfares are quoted live at booking and not carried in the pack
+    • Flight Zambezi Air, Nelspruit → Vilanculos (VNX)
+        §8 airfares are quoted live at booking and not carried in the pack
+    • Ilha Azul Beach Lodge — Beach Villa Grande (FI)
+        'Beach Villa Grande' has no matching rate in the pack; §9 requires a re-quote before issue
+    • Flight Zambezi Air, VNX → Johannesburg (JNB)
+        §8 airfares are quoted live at booking and not carried in the pack
+
+
