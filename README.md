@@ -1,5 +1,7 @@
 # Aterra — Costing Agent (Lead AI exercise)
 
+[![CI](https://github.com/lucas-moont/aterra-costing-agent/actions/workflows/ci.yml/badge.svg)](https://github.com/lucas-moont/aterra-costing-agent/actions/workflows/ci.yml)
+
 Reads an operational quotation (what was booked, no prices) plus a contracted rate
 pack and one supplier email, and produces a **costed quotation** where every
 commercial figure carries its **source**, a **confidence** signal, and — where a
