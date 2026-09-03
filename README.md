@@ -45,9 +45,14 @@ python run_extraction.py                       # live (warms cache); --cached fo
 python ../eval/check_extraction.py             # grades extraction vs golden set → 23/23
 
 # trace any number back to its source
-python ask.py explain svc-04                    # deterministic provenance chain
+python ask.py explain svc-04                    # deterministic: provenance + what it superseded
 python ask.py "why is the family suite 375?"    # local Claude answers, grounded in the JSON
 ```
+
+`explain` prints the provenance chain, including what a rate replaced (375 supersedes the
+pack's 340). `ask` lets the local Claude answer in plain English, then a **deterministic
+grounding guard** checks every figure and document it cited against the quotation — anything
+not in the data is flagged `UNVERIFIED`, so a hallucinated number can't pass as fact.
 
 ## Layout
 
