@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  engine:
+    name: Engine — tests + typecheck
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: engine
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: engine/package-lock.json
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+
+  extraction:
+    name: Extraction — eval + smoke
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r extraction/requirements.txt
+      # The local Claude CLI is not available in CI, so we grade the committed
+      # extraction artefact against the golden rate set (deterministic, offline).
+      - run: python eval/check_extraction.py sample/rates.llm.json
+      # Smoke: the graph and the LLM wrapper import and compile.
+      - name: Graph builds
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from aterra_extraction.claude_llm import ClaudeCLI
+          from aterra_extraction.graph import build_graph
+          build_graph(ClaudeCLI(cache_dir=Path("data/llm-cache"), cache_only=True))
+          print("graph builds ok")
+          PY
+        working-directory: extraction
