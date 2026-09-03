@@ -12,6 +12,12 @@ engine/dist/
 extraction/out/
 engine/out/
 
+# LLM cache: keep only the two pipeline extraction entries; ad-hoc ask-query caches
+# are disposable and should not pollute the repo.
+/data/llm-cache/*
+!/data/llm-cache/32d871252bed0b9c.txt
+!/data/llm-cache/968f5abf7021a9a6.txt
+
 # Private verification oracle — our hand-checked answer key, not shipped.
 # Kept out of the repo so the submission is graded on the engine, not a lookup table.
 /oracle/
