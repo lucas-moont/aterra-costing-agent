@@ -4,6 +4,40 @@ The exercise is one quote against one rate pack. The product is many DMCs, thous
 rates across hundreds of suppliers, and a document folder that never stops growing. This
 sketches how the same boundary scales — no code here, just the shape.
 
+## The pipeline, and where the boundary sits
+
+```mermaid
+flowchart LR
+  subgraph docs[Source documents]
+    A[op quotation PDF]
+    B[rate pack PDF]
+    C[supplier email]
+  end
+  subgraph py["Python · LangGraph + local Claude — PROPOSES"]
+    I[ingest] --> R[extract_rates] --> S[extract_services] --> E[emit]
+  end
+  subgraph ts["TypeScript engine · deterministic — DISPOSES"]
+    P[priceService] --> Q[costQuotation]
+  end
+  A & B & C --> I
+  E -->|extraction.json| P
+  Q -->|quotation.json| OUT[["costed quote + confidence + needs_review"]]
+```
+
+Everything left of `extraction.json` is the LLM reading prose and proposing structure.
+Every **number** is born to the right of it, in the engine. The seam is a file, so the
+boundary is auditable, not just asserted. `ask/explain` reads back along the same line:
+provenance travels with each figure, so "where did this number come from?" is answered
+from data, never re-derived.
+
+## Where this sits in the product
+
+AterraAI's end-to-end flow is: inbound request → structured brief → itinerary →
+**rate lookup → costing** → quotation → client proposal → booking handoff. This exercise
+is the two bold steps — the first thing the product has to do well, and the one where a
+confident wrong number does the most damage. The design below is how those two steps hold
+up when the rate corpus and the tenant count grow.
+
 ## The invariant that does not change
 
 **The LLM proposes structure; a deterministic engine owns every number.** That holds at any
