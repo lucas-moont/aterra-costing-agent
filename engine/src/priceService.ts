@@ -125,7 +125,10 @@ export function priceService(service: ExtractedService): CostedLine {
     unit_rate: rate.value,
     line_total: lineTotal(rate.value, service.basis, quantities),
     confidence: classify(rate, assumption, service.flags),
-    provenance: rate.provenance,
+    // Carry the superseded source through, so the line can tell the whole story.
+    provenance: rate.supersedes
+      ? { ...rate.provenance, supersedes: rate.supersedes }
+      : rate.provenance,
   };
 }
 

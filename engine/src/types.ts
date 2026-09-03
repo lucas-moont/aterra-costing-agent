@@ -23,6 +23,9 @@ export interface Provenance {
   raw_value: string;
   /** A stable, resolvable reference so a future inbox can deep-link to the source. */
   ref?: string;
+  /** The source this one replaced (e.g. an email rate that superseded a pack rate),
+   *  so the costed line can tell the full "375 replaced 340" story, not just the winner. */
+  supersedes?: Provenance;
 }
 
 /** How a located rate relates to its source. `correspondence` supersedes `pack`;

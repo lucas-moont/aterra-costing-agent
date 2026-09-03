@@ -80,7 +80,12 @@
         "document": "Supplier-email-Camissa-2027-rates.txt",
         "locator": "body › 'Family Suite (B&B) USD 375.00 per room per night'",
         "raw_value": "USD 375.00",
-        "ref": "email-camissa-2026-08-12#family-suite"
+        "ref": "email-camissa-2026-08-12#family-suite",
+        "supersedes": {
+          "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+          "locator": "§1 Cape Town Accommodation › 'Family Suite'",
+          "raw_value": "340.00"
+        }
       }
     },
     {
@@ -101,7 +106,12 @@
         "document": "Supplier-email-Camissa-2027-rates.txt",
         "locator": "body › 'Classic Room (B&B) USD 230.00 per room per night'",
         "raw_value": "USD 230.00",
-        "ref": "email-camissa-2026-08-12#classic-room"
+        "ref": "email-camissa-2026-08-12#classic-room",
+        "supersedes": {
+          "document": "Supplier-Rate-Pack-SA-2027-v3.pdf",
+          "locator": "§1 Cape Town Accommodation › 'Classic Room'",
+          "raw_value": "210.00"
+        }
       }
     },
     {

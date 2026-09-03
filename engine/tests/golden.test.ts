@@ -50,6 +50,14 @@ describe("golden set — Halloran MRA-2027-0641", () => {
     expect(suite?.confidence.tier).toBe("confirmed");
   });
 
+  it("carries the superseded pack rate so the line tells the whole story", () => {
+    const suite = q.lines.find((l) => l.id === "svc-04");
+    expect(suite?.provenance?.supersedes?.raw_value).toBe("340.00");
+    expect(suite?.provenance?.supersedes?.document).toBe(
+      "Supplier-Rate-Pack-SA-2027-v3.pdf",
+    );
+  });
+
   it("never emits 0 for an unpriced line (null, not free)", () => {
     const flight = q.lines.find((l) => l.id === "svc-12");
     expect(flight?.line_total).toBeNull();
