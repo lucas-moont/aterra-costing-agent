@@ -73,3 +73,25 @@ every number.
 - `sample/` — committed example output (`quotation.json` + LLM extractions)
 
 Start with `docs/NOTE.md`; `CONTEXT.md` is the glossary; `docs/adr/` holds the decisions.
+
+## What I'd do with more time
+
+Consciously cut to respect the two-hour budget — surfaced here rather than hidden. Roughly
+in priority order:
+
+1. **Wire the LLM `match` node end to end** so the live pipeline emits the full
+   `extraction.json` the engine consumes. Today the live run extracts rates + services (and
+   the eval grades them 23/23); the analyst-curated fixture is the validated extraction the
+   engine costs. Closing that gap is the first thing I'd finish.
+2. **The action loop** — implement `draft_supplier_request` so a `needs_review` item becomes
+   an outbound supplier query, the reply is parsed as a `correspondence` rate, and everything
+   downstream recalculates. Designed in [`docs/SUPPLEMENT.md`](docs/SUPPLEMENT.md).
+3. **Retrieval at scale** — pgvector over the rate corpus + a deterministic re-rank, replacing
+   the "model sees every rate at once" prompt once there are thousands. See
+   [`docs/architecture.md`](docs/architecture.md).
+4. **LangSmith tracing** behind the env flag, for replay and regression on the agent's steps.
+5. **Richer season handling** — price each night by its own band, not the stay's first night.
+6. **Persistence & multi-tenant** — the Postgres + row-level-security data model in
+   `docs/architecture.md`; not built here (no DB, per the brief).
+7. **Grow the golden set** — `eval/` becomes a living set, extended every time a human
+   overrides the model.
