@@ -43,6 +43,10 @@ cd extraction && python -m venv .venv
 .venv/Scripts/pip install -r requirements.txt
 python run_extraction.py                       # live (warms cache); --cached for offline
 python ../eval/check_extraction.py             # grades extraction vs golden set → 23/23
+
+# trace any number back to its source
+python ask.py explain svc-04                    # deterministic provenance chain
+python ask.py "why is the family suite 375?"    # local Claude answers, grounded in the JSON
 ```
 
 ## Layout
