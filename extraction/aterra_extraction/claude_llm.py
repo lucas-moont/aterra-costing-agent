@@ -36,13 +36,15 @@ class ClaudeCLI(LLM):
     timeout_s: int = 180
     cache_only: bool = False  # offline: never call the model, require a warm cache
     binary: str = "claude"
+    extra_args: tuple[str, ...] = ()  # e.g. --append-system-prompt to pin language
 
     @property
     def _llm_type(self) -> str:
         return "claude-cli"
 
     def _cache_path(self, prompt: str) -> Path:
-        digest = hashlib.sha256(prompt.encode("utf-8")).hexdigest()[:16]
+        key = prompt + "\x00" + "\x00".join(self.extra_args)
+        digest = hashlib.sha256(key.encode("utf-8")).hexdigest()[:16]
         return self.cache_dir / f"{digest}.txt"
 
     def _call(
@@ -82,9 +84,11 @@ class ClaudeCLI(LLM):
         exe = shutil.which(self.binary) or self.binary
         try:
             result = subprocess.run(
-                [exe, "-p", prompt],
+                [exe, "-p", prompt, *self.extra_args],
                 capture_output=True,
                 text=True,
+                encoding="utf-8",   # claude emits UTF-8; don't let Windows decode as cp1252
+                errors="replace",
                 timeout=self.timeout_s,
             )
         except (FileNotFoundError, subprocess.TimeoutExpired) as exc:
