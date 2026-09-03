@@ -54,6 +54,15 @@ pack's 340). `ask` lets the local Claude answer in plain English, then a **deter
 grounding guard** checks every figure and document it cited against the quotation — anything
 not in the data is flagged `UNVERIFIED`, so a hallucinated number can't pass as fact.
 
+## AI-native affordance (a deliberate extra)
+
+Because this is a Lead-AI role, the repo is built to be driven by an AI teammate, not only a
+human: a `CLAUDE.md` orients an agent to the codebase, and a project skill — `/quote` — runs
+the whole flow (extract → eval → cost) and then explains the result and answers "where did
+this number come from?" conversationally via `ask/explain`. It is a convenience layer, not
+the product; `./run.ps1` remains the universal path, and the deterministic engine still owns
+every number.
+
 ## Layout
 
 - `extraction/` — Python agent: ingestion + LangGraph + local-Claude LLM
