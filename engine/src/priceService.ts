@@ -68,6 +68,10 @@ function selectRate(service: ExtractedService): RateSelection {
   return { rate: candidates[0] ?? null };
 }
 
+/** Factors that legitimately default to 1 when the quote is silent (one vehicle, one
+ *  group). Every other factor is an essential count — its absence is an unknown, not a 1. */
+const DEFAULT_ONE: (keyof Quantities)[] = ["vehicles", "groups"];
+
 /** Multiply the rate by exactly the quantities the basis calls for. A per_vehicle
  *  or per_group line defaults its count to 1 when the quote does not state one. */
 function lineTotal(rate: number, basis: Basis, q: Quantities): number {
@@ -76,6 +80,14 @@ function lineTotal(rate: number, basis: Basis, q: Quantities): number {
     total *= q[factor] ?? 1;
   }
   return total;
+}
+
+/** Essential count factors the basis needs but the quote did not supply. Costing still
+ *  proceeds (as if 1), but the figure is an assumption, not a silent guess. */
+function missingCounts(basis: Basis, q: Quantities): (keyof Quantities)[] {
+  return BASIS_FACTORS[basis].filter(
+    (factor) => !DEFAULT_ONE.includes(factor) && q[factor] == null,
+  );
 }
 
 export function priceService(service: ExtractedService): CostedLine {
@@ -119,12 +131,22 @@ export function priceService(service: ExtractedService): CostedLine {
     quantities.nights = nightsBetween(service.date_in, service.date_out);
   }
 
+  // Every reason this figure is less than certain: the season-boundary selection, a
+  // missing essential quantity, and any observation the extraction layer flagged.
+  const reasons = [
+    ...(assumption ? [assumption] : []),
+    ...missingCounts(service.basis, quantities).map(
+      (f) => `Missing ${f} for a ${service.basis} line — assumed 1; confirm the quantity`,
+    ),
+    ...(service.flags?.map((f) => f.reason) ?? []),
+  ];
+
   return {
     ...base,
     quantities,
     unit_rate: rate.value,
     line_total: lineTotal(rate.value, service.basis, quantities),
-    confidence: classify(rate, assumption, service.flags),
+    confidence: classify(rate, reasons),
     // Carry the superseded source through, so the line can tell the whole story.
     provenance: rate.supersedes
       ? { ...rate.provenance, supersedes: rate.supersedes }
@@ -132,28 +154,18 @@ export function priceService(service: ExtractedService): CostedLine {
   };
 }
 
-/** A priced line is stale if its rate is carried forward, an assumption if the
- *  selection or extraction raised any (season boundary, levy counts, trailer
- *  threshold, out-of-region rate), otherwise confirmed. */
-function classify(
-  rate: RateCandidate,
-  selectionAssumption: string | undefined,
-  flags: ExtractedService["flags"],
-): Confidence {
+/** A priced line is stale if its rate is carried forward, an assumption if anything
+ *  (season boundary, missing quantity, levy counts, trailer threshold, out-of-region
+ *  rate) qualified the figure, otherwise confirmed. */
+function classify(rate: RateCandidate, reasons: string[]): Confidence {
   if (rate.kind === "carried_forward") {
     return {
       tier: "stale",
       reason: "Carried-forward tariff outside its validity — reconfirm before quoting",
     };
   }
-
-  const reasons = [
-    ...(selectionAssumption ? [selectionAssumption] : []),
-    ...(flags?.map((f) => f.reason) ?? []),
-  ];
   if (reasons.length > 0) {
     return { tier: "assumption", reason: reasons.join("; ") };
   }
-
   return { tier: "confirmed", reason: "Read from a current contracted rate" };
 }

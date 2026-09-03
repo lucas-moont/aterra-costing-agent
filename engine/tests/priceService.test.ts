@@ -219,4 +219,35 @@ describe("priceService", () => {
     expect(line.confidence.tier).toBe("assumption");
     expect(line.confidence.reason.toLowerCase()).toContain("season");
   });
+
+  it("flags a missing essential quantity instead of silently assuming one", () => {
+    // A per-person line with no pax: cost as 1, but never present that as certain.
+    const line = priceService(
+      service({
+        id: "svc-missing",
+        basis: "per_person",
+        quantities: {}, // pax absent
+        rate_candidates: [{ value: 95, kind: "pack", provenance: packRef }],
+      }),
+    );
+
+    expect(line.line_total).toBe(95); // computed as if 1 pax
+    expect(line.confidence.tier).toBe("assumption");
+    expect(line.confidence.reason.toLowerCase()).toContain("missing pax");
+  });
+
+  it("does not flag per_vehicle / per_group when the count is left implicit", () => {
+    // vehicles and groups legitimately default to 1 — silence is not an unknown here.
+    const line = priceService(
+      service({
+        id: "svc-veh",
+        basis: "per_vehicle",
+        quantities: {}, // vehicles absent — fine, defaults to 1
+        rate_candidates: [{ value: 480, kind: "pack", provenance: packRef }],
+      }),
+    );
+
+    expect(line.line_total).toBe(480);
+    expect(line.confidence.tier).toBe("confirmed");
+  });
 });
