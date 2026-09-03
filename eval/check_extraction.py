@@ -4,9 +4,11 @@ This is the "does the model see what a human sees?" pass. It matches on (rate, k
 so a differently-worded service name still counts — we are grading whether the right
 number was found from the right kind of source, which is what the costing depends on.
 
-    python eval/check_extraction.py
+    python eval/check_extraction.py [path/to/rates.llm.json]
 
-Exit code is non-zero if anything in the golden set is missing, so it can gate CI.
+Defaults to the live extraction output; CI points it at the committed sample so it
+runs without the local Claude. Exit code is non-zero if anything in the golden set is
+missing, so it can gate CI.
 """
 
 from __future__ import annotations
@@ -20,7 +22,10 @@ REPO = ROOT.parent
 
 
 def main() -> int:
-    llm_path = REPO / "extraction" / "out" / "rates.llm.json"
+    if len(sys.argv) > 1:
+        llm_path = Path(sys.argv[1])
+    else:
+        llm_path = REPO / "extraction" / "out" / "rates.llm.json"
     if not llm_path.exists():
         print(f"[eval] no extraction at {llm_path}. Run extraction first.", file=sys.stderr)
         return 2
