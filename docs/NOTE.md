@@ -17,23 +17,23 @@ application are reproducible and testable, and the boundary is visible in a file
 reports a **resolved subtotal** (\$27,015) and lists stale and unresolved items apart; it
 never sums a grand total that hides a guess. An unpriced line is `null`, never `0`. This
 quote raises **13 needs_review items**: 3 live airfares, 2 stale helicopter tariffs, a
-villa with no rate, a season boundary, two levy mismatches, a sub-6-pax trailer, and a
-Cape Town rate used in Johannesburg.
+villa with no rate, a season boundary, levy mismatches, a sub-6-pax trailer, and an
+out-of-region rate.
 
-**Knowing it's right.** A hand-worked oracle drives 19 engine tests (the golden set costs
+**Knowing it's right.** A hand-worked oracle drives the engine tests (the golden set costs
 the whole quote and asserts every subtotal). An eval grades the LLM extraction against a
-golden rate set — **23/23**, matched on value + source kind.
+golden rate set — **23/23**. `ask/explain` traces any figure to its source; a deterministic
+guard flags anything the model cites that is not in the quote.
 
-**Stack.** Python for ingestion/orchestration (mature tooling); TypeScript for the engine,
-so the piece most likely to reach production already sits in Aterra's language. In a real
-build that split is a team call weighing cost, speed and familiarity; the JSON seam keeps
-either side replaceable.
+**Stack.** Python for ingestion/orchestration; TypeScript for the engine, so the piece most
+likely to reach production is already in Aterra's language. In a real build that split is a
+team call weighing cost, speed and familiarity; the JSON seam keeps either side replaceable.
 
 **AI usage & time.** Built with Claude Code driving the implementation, inside the two-hour
 budget. The model's extraction was strong — it even caught a carried-forward speedboat
 tariff I hadn't listed. My override was structural: all judgement (supersession, season,
 flags) stays in deterministic code, never trusted to the model.
 
-**With more time.** Wire the LLM `match` node end-to-end into `extraction.json`, add the
-`ask`/`explain` provenance query, turn on LangSmith tracing. See `architecture.md` for the
-data model and the pgvector retrieval that replaces flat matching at scale.
+**With more time.** Wire the LLM `match` node end-to-end into `extraction.json` and turn on
+LangSmith tracing. See `architecture.md` for the data model and the pgvector retrieval that
+replaces flat matching at scale.
