@@ -36,6 +36,10 @@ jobs:
       # The local Claude CLI is not available in CI, so we grade the committed
       # extraction artefact against the golden rate set (deterministic, offline).
       - run: python eval/check_extraction.py sample/rates.llm.json
+      # Deterministic ask/explain tests (provenance chain + grounding guard).
+      - name: ask/explain tests
+        run: python -m unittest test_ask -v
+        working-directory: extraction
       # Smoke: the graph and the LLM wrapper import and compile.
       - name: Graph builds
         run: |
